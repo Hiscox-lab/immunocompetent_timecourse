@@ -1,5 +1,5 @@
-# read in file for synonymous and non-synonymous mutations line plot parse.txt, add column of nrow aapos and then rbind and go from there
-
+# Script to plot linegraph for synonymous and non-synonymous mutations across the genome using parse.txt output from Syn_NonSyn_parse_aa_V3.pl
+# Add column of nrow amino acid position and then rbind and rename column for end plot
 
 nsl_36 <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/3636_TAGTCGTCAA-ATGGCTCGGT_L002.final_AA_parse.txt", sep="\t")
 nsl_36$AAposition <- 1:nrow(nsl_36)
@@ -118,26 +118,25 @@ nsl_83$AAposition <- 1:nrow(nsl_83)
 nsl_83$Name <- 'P 16'
 nsl_83$Sample <- 'S2'
 
-rbind_nim_15N <- rbind(nsl_36, nsl_37, nsl_39, nsl_40, nsl_43, nsl_44, nsl_47, nsl_49, nsl_50, nsl_51, nsl_52, nsl_53, nsl_54, nsl_59, nsl_60, nsl_61, nsl_62, nsl_65, nsl_67, nsl_68, nsl_70, nsl_74, nsl_79, nsl_82, nsl_83)
+rbind_nim_15N <- rbind(nsl_36, nsl_37, nsl_39, nsl_40, nsl_43, nsl_44, nsl_47, nsl_49, nsl_50, nsl_51, nsl_52, nsl_53, nsl_54, nsl_59, nsl_60, nsl_61, nsl_62, nsl_65, nsl_67, nsl_68, nsl_70, nsl_74, nsl_79, nsl_82, nsl_83) # rbind all dataframes for plotting
 
-rbind_nim_15N$AAcoverage<-as.numeric(rbind_nim_15N$AAcoverage) # make coverage numeric
-rbind_nim_15N$CntNonSyn<-as.numeric(rbind_nim_15N$CntNonSyn) # make cntnonsyn numeric
-rbind_nim_15N$AAposition<-as.numeric(rbind_nim_15N$AAposition) # make variables numeric to allow calculations and plotting
+rbind_nim_15N$AAcoverage<-as.numeric(rbind_nim_15N$AAcoverage) # change variables to numeric for calculations
+rbind_nim_15N$CntNonSyn<-as.numeric(rbind_nim_15N$CntNonSyn) 
+rbind_nim_15N$AAposition<-as.numeric(rbind_nim_15N$AAposition) 
 rbind_nim_15N$Proportion <-  rbind_nim_15N$CntNonSyn / rbind_nim_15N$AAcoverage # new column with proportion of cntnonsyn
 rbind_nim_15N <- rbind_nim_15N %>% filter(AAcoverage > 20) # filter coverage at 20
 rbind_nim_15N$Proportion<-as.numeric(rbind_nim_15N$Proportion) # make variable numeric to allow plotting
-rbind_nim_15N$Propsyn <- rbind_nim_15N$CntSyn / rbind_nim_15N$AAcoverage
+rbind_nim_15N$Propsyn <- rbind_nim_15N$CntSyn / rbind_nim_15N$AAcoverage # calculate proportions
 rbind_nim_15N$allprop <- (rbind_nim_15N$CntNonSyn + rbind_nim_15N$CntSyn) / rbind_nim_15N$AAcoverage
 
-names(rbind_nim_15N)[names(rbind_nim_15N) == "Proportion"] <- "Non-synonymous nucleotide mutations"
+names(rbind_nim_15N)[names(rbind_nim_15N) == "Proportion"] <- "Non-synonymous nucleotide mutations" # change names for plot
 names(rbind_nim_15N)[names(rbind_nim_15N) == "Propsyn"] <- "Synonymous nucleotide mutations"
 
-cbp1 <- c("#E69F00", "#56B4E9", "#009E73", "#7CFC00")
+cbp1 <- c("#E69F00", "#56B4E9", "#009E73", "#7CFC00") # make vector colour schemes for plot
 cbp2 <- c("#E69F00", "#56B4E9", "#009E73")
 cbp3 <- c("#009E73", "#E69F00")
 
-
-#line plot with different colours for synonymous and non-synonymous changes 
+#line plot with different colours for synonymous and non-synonymous changes using above vectors
 melt_lineplotrbind <- reshape2::melt(rbind_nim_15N, id.vars = c('AAposition', 'Sample', 'Name', 'Non-synonymous nucleotide mutations', 'Synonymous nucleotide mutations'), measure.vars= c('Non-synonymous nucleotide mutations', 'Synonymous nucleotide mutations')) # melt data for ggplot
 lpp <- ggplot(data= melt_lineplotrbind, aes(x=AAposition, y=value, colour=variable)) + geom_line() +scale_colour_manual(values=cbp3) +
   ylab("Proportion") + xlab("Amino acid position") + ylim(0,1) + 
@@ -146,10 +145,8 @@ lpp <- ggplot(data= melt_lineplotrbind, aes(x=AAposition, y=value, colour=variab
         legend.position = "bottom",
         axis.title.y = element_text(face="bold", size = 13)) 
 
-gglpp<- lpp + facet_grid(Name ~ Sample) 
+gglpp<- lpp + facet_grid(Name ~ Sample) # facet plots to see all data on one plot
 ggsave(filename= "synnonsyncolour_lineplot_nim_participants.tiff", plot = gglpp, device='tiff', dpi= 300, width=8, height=12)
-
-
 
 
 
