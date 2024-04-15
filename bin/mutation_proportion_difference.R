@@ -23,6 +23,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 # first work out proportion, cbind proportion and coverage
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter coverage at 20
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -44,6 +45,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -65,6 +67,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -86,6 +89,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -107,6 +111,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -128,6 +133,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -149,6 +155,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion1 - nonsyn_3$Proportion2 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -165,6 +172,7 @@ names(nonsyn_4)[names(nonsyn_4) == "CntNonSyn"] <- "CntNonSyn3"
 
 nonsyn_5 <- cbind(nonsyn_2, nonsyn_4[, c("Proportion4", "AAcoverage3", "CntNonSyn3")]) # cbind proportion, cov and cnt to filter
 nonsyn_5 <- nonsyn_5 %>% filter(AAcoverage2 > 20) %>% filter(AAcoverage3 > 20)
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_5$Difference <-  nonsyn_5$Proportion4 - nonsyn_5$Proportion2 # work out difference and make numeric
 nonsyn_5$Difference <- as.numeric(nonsyn_5$Difference)
 names(nonsyn_5)[names(nonsyn_5) == "AAcoverage2"] <- "AAcoverage" #renaming to like others so can rbind
@@ -192,6 +200,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -213,6 +222,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -234,6 +244,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
@@ -255,6 +266,7 @@ names(nonsyn_2)[names(nonsyn_2) == "CntNonSyn"] <- "CntNonSyn2" # change name fo
 
 nonsyn_3 <- cbind(nonsyn_1, nonsyn_2[, c("Proportion2", "AAcoverage2", "CntNonSyn2")]) # cbind proportion, cov and cnt to filter
 nonsyn_3 <- nonsyn_3 %>% filter(AAcoverage > 20) %>% filter(AAcoverage2 > 20) # filter cov
+nonsyn_3 <- nonsyn_3 %>% filter(CntNonSyn > 3) %>% filter(CntNonSyn2 > 3) # filter non syn counts 3
 nonsyn_3$Difference <-  nonsyn_3$Proportion2 - nonsyn_3$Proportion1 # work out difference and make numeric
 nonsyn_3$Difference <- as.numeric(nonsyn_3$Difference)
 nonsyn_3 <- nonsyn_3 %>% filter(Difference != 0)
