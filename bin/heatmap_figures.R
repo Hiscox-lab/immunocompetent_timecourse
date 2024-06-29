@@ -1,5 +1,5 @@
 # heatmaps to compare synonymous and non-synonymous mutations across proteins and transitions and transversion mutations
-# read in concatenated parse files outputted from Syn_NonSyn_parse_aa_V3.pl 
+# read in concatenated parse files outputted from Syn_NonSyn_parse_aa_V3.pl ran on the outputs from DiversiTools
 
 library(ggplot2)
 library(ggrepel)
@@ -11,7 +11,7 @@ library("pheatmap")
 
 
 ### SYN NONSYN HEATMAP ###
-# use cat parse.txt file 
+# use cat parse.txt file as input
 
 parse15N_nim <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/nim15%_parse.txt", sep="\t") # read in concatenated parse file
 
@@ -158,7 +158,7 @@ ggsave(filename= "dndsratio_nim_hm_20X.tiff", plot= dnds, device='tiff', dpi=300
 ### HEATMAP to look at transitions and transversions ###
 # use entropy.txt file output from DiversiTools
 # getting position on entropy file for nsps by reading in individually and then rbinding them all at the end
-# can also use to investigate indels
+# can also use to investigate indels although none were found in this cohort so this was not published
 
 nsps <- read.csv("/home/hannahg/projects/dstl_project/data/below_15%_N/protein_position.csv") # read in protein position file
 
