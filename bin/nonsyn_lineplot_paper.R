@@ -1,4 +1,4 @@
-# Script to plot linegraph for synonymous and non-synonymous mutations across the genome using parse.txt output from Syn_NonSyn_parse_aa_V3.pl
+# Script to plot linegraph for synonymous and non-synonymous mutations across the genome using parse.txt output from Syn_NonSyn_parse_aa_V3.pl post DiversiTools analysis
 # Add column of nrow amino acid position and then rbind and rename column for end plot
 
 nsl_36 <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/3636_TAGTCGTCAA-ATGGCTCGGT_L002.final_AA_parse.txt", sep="\t")
