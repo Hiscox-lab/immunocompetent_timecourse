@@ -9,7 +9,7 @@ library('cowplot')
 
 # read in parse.txt file for each participant and add column to differentiate when merging
 nonsyn_1 <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/3636_TAGTCGTCAA-ATGGCTCGGT_L002.final_AA_parse.txt", sep="\t")
-nonsyn_1$AAposition <- 1:nrow(nonsyn_1)
+nonsyn_1$AAposition <- 1:nrow(nonsyn_1) # column to create amino acid position across the whole genome not just the protein
 nonsyn_2 <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/3637_TGGACTAATT-CAGCGGATAA_L002.final_AA_parse.txt", sep="\t")
 nonsyn_2$AAposition <- 1:nrow(nonsyn_2)
 
