@@ -1,13 +1,14 @@
 #!/usr/bin/perl -w
 # usage perl Syn_NonSyn_parse_aa_V3 and change three lines as below
-open (INDEX, "/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/loading_list.tsv"); # create a list of all the sample prefixes for input
+# to run as a loop ensure all DiversiTools outputs are in the same directory, here they are in /DiversiTools
+open (INDEX, "/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/loading_list.tsv"); # create a list of all the sample prefixes for input named loading_list.tsv
 @indexs=<INDEX>;
 chomp @indexs;
 close INDEX;
 
 foreach $index(@indexs) {
 %hash=();
-open(DATA,"/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/$index\_aa_details.txt"); # change to path of _aa_details.txt files
+open(DATA,"/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/$index\_aa_details.txt"); # change to path of _aa_details.txt files output from DiversiTools
 while (<DATA>) {
     chomp;
     @each=split(/\t/);
@@ -18,7 +19,7 @@ close DATA;
 open (NEWDETAIL,">$index\_AA_parse.txt");
 print NEWDETAIL "Sample\tChr\tProtein\tAAPosition\tRefAA\tRefSite\tRefCodon\tCntNonSyn\tCntSyn\tNbStop\tAAcoverage\n";
     
-open(AA, "/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/$index\_AA.txt"); # change to path of _AA.txt files
+open(AA, "/home/hannahg/projects/P323L/scv2-029+027/DiversiTools/$index\_AA.txt"); # change to path of _AA.txt files output from DiversiTools
 while (<AA>) {
     unless (/^Sample\tChr/) {
         @eachindex=split(/\t/);
