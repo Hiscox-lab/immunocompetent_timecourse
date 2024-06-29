@@ -29,7 +29,8 @@ top_sndaa_paper.R # developed by HG/IDB
 Contributors: XD- Xiaofeng Dong, RPR- Rebekah Penrice-Randal, IDB- I'ah Donovan Banfield, HG- Hannah Goldswain
 
 ## Raw data availability
-Raw fastq files have been deposited in the National Center for Biotechnology Information (NCBI) Short Read Archive (SRA) under the bioproject: . Accessible here: 
+Raw fastq files have been deposited in the National Center for Biotechnology Information (NCBI) Short Read Archive (SRA) under the bioproject: PRJNA1012698. Accessible here: https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA1012698
+
 
 ## Contact us
 Hannah Goldswain at hannah.goldswain@liverpool.ac.uk, Julian Hiscox at julianh@liverpool.ac.uk.
