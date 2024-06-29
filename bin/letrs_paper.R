@@ -1,4 +1,5 @@
 ## Plotting sgmrna abundance using output from LeTRS tool (Dong et al., 2022)
+# for this plot use the known_junction output files
 
 library(data.table)
 library(cowplot)
@@ -38,7 +39,7 @@ letrs_readin_knownjct <- function(filepath ="./", file_pattern, file_list) {
 
 aa_list_letrs <- letrs_readin_knownjct(filepath = "./", file_pattern = ".tab", file_list = aa_list)
 
-# for participants with more than one timepoint cbind on S2/S3 onto sample1 so can plot together
+# for participants with more than one timepoint cbind S2/S3 onto sample1 (S1) so can plot together
 # knownjunction_patient_sample == kj_pXsX
 # read in known junction files and rename columns so can plot different timepoints on one graph
 
