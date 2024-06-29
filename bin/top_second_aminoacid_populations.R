@@ -1,5 +1,4 @@
-# top and snd aa for nimagen data
-# read in AA.txt separately and add in AAposition then can rbind and do all analysis at once
+# top and snd aa plots using AA.txt files, read in separately and add in amino acid position then can rbind and do all analysis at once
 
 library(ggplot2)
 library(ggrepel)
@@ -7,6 +6,7 @@ library(dplyr)
 library(tidyverse)
 library(reshape2) 
 
+# read in AA.txt file output from DiversiTools and rename columns
 tsaa_36 <- read.delim("/home/hannahg/projects/dstl_project/data/nimagen/DiversiTools/3636_TAGTCGTCAA-ATGGCTCGGT_L002.final_AA.txt", sep="\t")
 tsaa_36$AAposition <- 1:nrow(tsaa_36)
 tsaa_36$Name <- 'P 01'
@@ -124,11 +124,10 @@ tsaa_83$AAposition <- 1:nrow(tsaa_83)
 tsaa_83$Name <- 'P 16'
 tsaa_83$Sample <- 'S2'
 
-rbind_nim_tsaa <- rbind(tsaa_36, tsaa_37, tsaa_39, tsaa_40, tsaa_43, tsaa_44, tsaa_47, tsaa_49, tsaa_50, tsaa_51, tsaa_52, tsaa_53, tsaa_54, tsaa_59, tsaa_60, tsaa_61, tsaa_62, tsaa_64, tsaa_65, tsaa_66, tsaa_67, tsaa_68, tsaa_70, tsaa_74, tsaa_78, tsaa_79, tsaa_80, tsaa_82, tsaa_83)
+# rbind all dataframes
 rbind_nim_tsaa_15N <- rbind(tsaa_36, tsaa_37, tsaa_39, tsaa_40, tsaa_43, tsaa_44, tsaa_47, tsaa_49, tsaa_50, tsaa_51, tsaa_52, tsaa_53, tsaa_54, tsaa_59, tsaa_60, tsaa_61, tsaa_62, tsaa_65, tsaa_67, tsaa_68, tsaa_70, tsaa_74, tsaa_79, tsaa_82, tsaa_83)
 
-#for all 15N
-rbind_nim_tsaa_15N$AAcoverage<-as.numeric(rbind_nim_tsaa_15N$AAcoverage) # make all the values you might want to plot as numeric
+rbind_nim_tsaa_15N$AAcoverage<-as.numeric(rbind_nim_tsaa_15N$AAcoverage) # make all the values you might want to plot numeric
 rbind_nim_tsaa_15N$TopAAcnt <- as.numeric(rbind_nim_tsaa_15N$TopAAcnt)
 rbind_nim_tsaa_15N$SndAAcnt <- as.numeric(rbind_nim_tsaa_15N$SndAAcnt)
 rbind_nim_tsaa_15N$TrdAAcnt <- as.numeric(rbind_nim_tsaa_15N$TrdAAcnt)
@@ -150,9 +149,11 @@ rbind_nim_tsaa_15N$MutantTrdAA <- do.call(paste, c(rbind_nim_tsaa_15N[cols3AA]))
 
 #write.csv(rbind_nim_tsaa_15N,"./proportions_aa_nim_15N.csv", row.names = FALSE) # print csv of results of prop AAs
 
+# melt and change variable to plot
 melt_rbindall <- reshape2::melt(rbind_nim_tsaa_15N, id.vars = c('Name', 'Sample', 'AAposition'), measure.vars=  c('ProportionTopAA', 'Proportion2ndAA'))
 melt_rbindall$variable <- as.factor(melt_rbindall$variable) # change to allow plotting of graph
 
+# ggplot dot plot
 tsaa_all <- ggplot(data= melt_rbindall, aes(x=AAposition, y=value)) + geom_point(aes(colour=factor(variable)), size=1) + 
   xlim(0,9755) + ylim(0,1) + ylab("Proportion") + xlab("Amino acid position") +
   theme(text = element_text(size = 11)) + theme(legend.position = "bottom") + scale_colour_discrete(name= "Mutant", labels = c("Top amino acid count", "Second amino acid count")) 

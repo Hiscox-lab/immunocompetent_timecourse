@@ -1,4 +1,5 @@
-## Letrs loop 
+## Plotting sgmrna abundance using output from LeTRS tool (Dong et al., 2022)
+# for this plot use the known_junction output files
 
 library(data.table)
 library(cowplot)
@@ -8,8 +9,9 @@ library(dplyr)
 library(tidyverse)
 library(reshape2)
 
-setwd("/home/hannahg/projects/dstl_project/data/nimagen/Raw_fastq/LeTRS/kj_all_25/")
+setwd("/home/hannahg/projects/dstl_project/data/nimagen/Raw_fastq/LeTRS/kj_all_25/") # set working directory to where LeTRS output known junction txt files are located
 
+# function to read in known junction files per sample, all located in one directory
 letrs_readin_knownjct <- function(filepath ="./", file_pattern, file_list) {
   
   temp <- list.files(filepath, pattern=file_pattern) # creates list with filenames as in the directory
@@ -37,8 +39,9 @@ letrs_readin_knownjct <- function(filepath ="./", file_pattern, file_list) {
 
 aa_list_letrs <- letrs_readin_knownjct(filepath = "./", file_pattern = ".tab", file_list = aa_list)
 
-# cbind on S2/S3 onto sample1 so can plot together
+# for participants with more than one timepoint cbind S2/S3 onto sample1 (S1) so can plot together
 # knownjunction_patient_sample == kj_pXsX
+# read in known junction files and rename columns so can plot different timepoints on one graph
 
 kj_p1s1 <- aa_list_letrs[["known_junction36"]]
 kj_p1s2 <- aa_list_letrs[["known_junction37"]]
@@ -118,13 +121,13 @@ names(kj_p16s2)[names(kj_p16s2) == "proportion1"] <- "proportion2"
 kj_p16 <- cbind(kj_p16s1, kj_p16s2[,c("peak_normcount_all_S2", "proportion2"), drop=FALSE])
 kj_p16$Patient <- "Participant 16"
 
-rbind_kj <- rbind(kj_p1, kj_p2, kj_p3, kj_p4s1, kj_p5, kj_p6, kj_p7, kj_p9, kj_p10s1, kj_p11s3, kj_p12, kj_p13s1, kj_p14s1, kj_p15s2, kj_p16, fill=TRUE)
+rbind_kj <- rbind(kj_p1, kj_p2, kj_p3, kj_p4s1, kj_p5, kj_p6, kj_p7, kj_p9, kj_p10s1, kj_p11s3, kj_p12, kj_p13s1, kj_p14s1, kj_p15s2, kj_p16, fill=TRUE) # rbind all participants dataframes to plot
 # need to fill in NA as some patients have 1/2/3 samples etc
 
 melt_rbindkj <- reshape2::melt(rbind_kj, id.vars = c('subgenome', 'Patient'), measure.vars= c('proportion1', 'proportion2', 'proportion3'))
 melt_rbindkj_pnc <- reshape2::melt(rbind_kj, id.vars = c('subgenome', 'Patient'), measure.vars= c('peak_normcount_all'))
 
-
+# plot as bar graph in ggplot
 letrs_plot <- ggplot() + geom_bar(data = melt_rbindkj, aes(x = subgenome, y = value, fill = variable), position = "dodge", stat = "identity") +
   labs(x= "Subgenome", y="Proportion normalised count") + scale_fill_discrete(name= "Sample", labels = c("1", "2", "3")) + 
   theme(legend.position = "bottom", 
@@ -135,13 +138,6 @@ letrs_plot <- ggplot() + geom_bar(data = melt_rbindkj, aes(x = subgenome, y = va
   facet_wrap(~ Patient) 
 
 ggsave(filename = "letrs_nim_propnormcount_participants.tiff", plot= letrs_plot, device='tiff', dpi= 300, width=8, height=8)
-
-
-
-
-
-
-
 
 
 
